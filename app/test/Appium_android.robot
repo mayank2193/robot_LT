@@ -1,17 +1,26 @@
 *** Settings ***
 Library    AppiumLibrary
-Library    Process 
-Library    Selenium2Library   
+Library    Process  
 
 *** Variables ***
 ${USERNAME}    %{LT_USERNAME}   #Can specify lambdatest Username directly instead of Environment variable.
 ${ACCESS_KEY}    %{LT_ACCESS_KEY}    #Can specify lambdatest Accesskey directly instead of Environment variable.
-${REMOTE_URL}    https://${USERNAME}:${ACCESS_KEY}@beta-hub.lambdatest.com/wd/hub
+${REMOTE_URL}    https://${USERNAME}:${ACCESS_KEY}@mobile-hub.lambdatest.com/wd/hub
 
 *** Test Cases ***
 Appium Test on lambdatest
    	# id=org.wikipedia.alpha:id/search_container
-    	Open Application    ${REMOTE_URL}    app=android_appurl  name=single_test    build=RobotFramework    platformName=Android    platformVersion=10   deviceName=Galaxy S9  isRealMobile=true
+   
+    &{LT_Options}    Create Dictionary
+    ...    isRealMobile=true
+    ...    platformVersion=12
+    ...    deviceName=Pixel 6
+    ...    app=android_appurl
+    ...    w3c=true
+    ...    platformName=Android
+    &{DESIRED_CAPABILITIES}    Create Dictionary
+    ...    LT:Options=&{LT_Options}
+    Open Application  remote_url=${REMOTE_URL}  desired_capabilities=${DESIRED_CAPABILITIES}
 	# id=org.wikipedia.alpha:id/search_container
 	Click Element    id=org.wikipedia.alpha:id/search_container
 	# id=org.wikipedia.alpha:id/search_src_text
