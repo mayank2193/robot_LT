@@ -4,8 +4,7 @@ Library    Process
 Library    status.py
 
 Resource  common.robot
-
-Test Teardown  common.Close test
+Test Teardown  Run Keywords  lambda Status  ${Test Status}  AND  Close Application
 
 *** Variables ***
 ${USERNAME}    %{LT_USERNAME}   #Can specify lambdatest Username directly instead of Environment variable.
