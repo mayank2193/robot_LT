@@ -3,7 +3,8 @@
 ## Setup
 * Clone the repo
 * Install dependencies  `pip install robotframework`  &&  `pip install --upgrade robotframework-seleniumlibrary`
-* `pip install robotframework-pabot` -> This is for parallelization 
+* `pip install robotframework-pabot` -> This is for parallelization
+* Make sure to run `rfbrowser init`  to support Library Browser to make cdp connection
 * For Appium, `pip install robotframework-appiumlibrary` .For more information refer https://github.com/serhatbolsu/robotframework-appiumlibrary
 * **Note: This is w.r.t Python3**
 
